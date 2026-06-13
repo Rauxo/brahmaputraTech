@@ -6,6 +6,7 @@ import Technologies from './components/Technologies'
 import Portfolio from './components/Portfolio'
 import Testimonials from './components/Testimonials'
 import Contact from './components/Contact'
+import Footer from './components/Footer'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -16,6 +17,7 @@ gsap.registerPlugin(ScrollTrigger)
 function App() {
   useEffect(() => {
     const lenis = new Lenis()
+    window.__lenis = lenis
 
     lenis.on('scroll', ScrollTrigger.update)
 
@@ -29,6 +31,7 @@ function App() {
     
     return () => {
       lenis.destroy()
+      window.__lenis = null
       gsap.ticker.remove(updateLenis)
     }
   }, [])
@@ -44,6 +47,7 @@ function App() {
         <Testimonials />
         <Contact />
       </main>
+      <Footer />
     </>
   )
 }

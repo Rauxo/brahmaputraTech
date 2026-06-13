@@ -27,10 +27,22 @@ export default function Navbar() {
 
   const close = () => setMenuOpen(false)
 
+  const handleNav = (e, href) => {
+    e.preventDefault()
+    close()
+    const target = document.querySelector(href)
+    if (!target) return
+    if (window.__lenis) {
+      window.__lenis.scrollTo(target, { offset: 0, duration: 1.4, easing: t => Math.min(1, 1.001 - Math.pow(2, -10 * t)) })
+    } else {
+      target.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} id="navbar">
 
-      <a href="#home" className="navbar__logo" aria-label="Brahmaputra Tech Home">
+      <a href="#home" className="navbar__logo" aria-label="Brahmaputra Tech Home" onClick={(e) => handleNav(e, '#home')}>
         <span className="navbar__logo-icon" aria-hidden="true">
           <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
             <rect width="32" height="32" rx="8" fill="#2563EB"/>
@@ -43,11 +55,11 @@ export default function Navbar() {
 
       <nav className="navbar__links" role="navigation" aria-label="Main navigation">
         {NAV_LINKS.map(({ label, href }) => (
-          <a key={label} href={href} className="navbar__link">{label}</a>
+          <a key={label} href={href} className="navbar__link" onClick={(e) => handleNav(e, href)}>{label}</a>
         ))}
       </nav>
 
-      <a href="#contact" className="navbar__cta" id="navbar-cta-btn">
+      <a href="#contact" className="navbar__cta" id="navbar-cta-btn" onClick={(e) => handleNav(e, '#contact')}>
         <span>Let's Talk</span>
         <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
           <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -97,7 +109,7 @@ export default function Navbar() {
               href={href}
               className="navbar__drawer-link"
               style={{ '--i': i }}
-              onClick={close}
+              onClick={(e) => handleNav(e, href)}
             >
               <span className="navbar__drawer-link-num">0{i + 1}</span>
               {label}
@@ -105,7 +117,7 @@ export default function Navbar() {
           ))}
         </div>
 
-        <a href="#contact" className="navbar__drawer-cta" onClick={close}>
+        <a href="#contact" className="navbar__drawer-cta" onClick={(e) => handleNav(e, '#contact')}>
           <span>Let's Talk</span>
           <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
             <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
