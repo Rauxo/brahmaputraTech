@@ -13,9 +13,9 @@ const Technologies = () => {
   useEffect(() => {
     let ctx = gsap.context(() => {
       
-      // Set initial positions of the second and third cards completely off-screen to the left
-      gsap.set(".card-2", { x: "-100vw" });
-      gsap.set(".card-3", { x: "-100vw" });
+      // Set initial positions of the second and third cards completely off-screen to the right and slightly down
+      gsap.set(".card-2", { x: "100vw", y: 300 });
+      gsap.set(".card-3", { x: "100vw", y: 300 });
 
       // Create the pinning timeline
       let tl = gsap.timeline({
@@ -28,16 +28,14 @@ const Technologies = () => {
         }
       });
 
-      // Animate Card 2 sliding in from the left, stacking on top of Card 1
-      tl.to(".card-2", {
-        x: 0,
-        ease: "none"
-      })
-      // Animate Card 3 sliding in from the left, stacking on top of Card 2
-      .to(".card-3", {
-        x: 0,
-        ease: "none"
-      });
+      // Animate Card 2 sliding in from right-bottom, and Card 1 scaling down to form a stack
+      tl.to(".card-1", { scale: 0.95, y: -20, opacity: 0.7, ease: "none" }, "card2")
+        .to(".card-2", { x: 0, y: 0, ease: "none" }, "card2")
+        
+      // Animate Card 3 sliding in from right-bottom, Card 2 scaling down, and Card 1 scaling down further
+        .to(".card-1", { scale: 0.90, y: -40, opacity: 0.4, ease: "none" }, "card3")
+        .to(".card-2", { scale: 0.95, y: -20, opacity: 0.7, ease: "none" }, "card3")
+        .to(".card-3", { x: 0, y: 0, ease: "none" }, "card3");
 
     }, sectionRef);
 
