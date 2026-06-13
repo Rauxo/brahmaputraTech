@@ -5,7 +5,6 @@ export default function Hero() {
   return (
     <section className="hero" id="home" aria-label="Hero section">
 
-      {/* ── Video Background ── */}
       <div className="hero__video-wrapper" aria-hidden="true">
         <video
           className="hero__video"
@@ -19,7 +18,6 @@ export default function Hero() {
         <div className="hero__overlay" />
       </div>
 
-      {/* ── Main Content ── */}
       <div className="hero__content hero__content--centered">
 
         <h1 className="hero__heading">

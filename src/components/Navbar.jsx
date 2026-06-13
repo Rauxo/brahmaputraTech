@@ -20,7 +20,6 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', onScroll)
   }, [])
 
-  // Lock body scroll when drawer is open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -31,7 +30,6 @@ export default function Navbar() {
   return (
     <header className={`navbar${scrolled ? ' navbar--scrolled' : ''}`} id="navbar">
 
-      {/* ── Logo ── */}
       <a href="#home" className="navbar__logo" aria-label="Brahmaputra Tech Home">
         <span className="navbar__logo-icon" aria-hidden="true">
           <svg width="34" height="34" viewBox="0 0 32 32" fill="none">
@@ -43,14 +41,12 @@ export default function Navbar() {
         <span className="navbar__logo-text">BRAHMAPUTRA TECH</span>
       </a>
 
-      {/* ── Desktop Nav ── */}
       <nav className="navbar__links" role="navigation" aria-label="Main navigation">
         {NAV_LINKS.map(({ label, href }) => (
           <a key={label} href={href} className="navbar__link">{label}</a>
         ))}
       </nav>
 
-      {/* ── Desktop CTA ── */}
       <a href="#contact" className="navbar__cta" id="navbar-cta-btn">
         <span>Let's Talk</span>
         <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -58,7 +54,6 @@ export default function Navbar() {
         </svg>
       </a>
 
-      {/* ── Hamburger (animated → X) ── */}
       <button
         className={`navbar__hamburger${menuOpen ? ' is-open' : ''}`}
         onClick={() => setMenuOpen(o => !o)}
@@ -71,21 +66,19 @@ export default function Navbar() {
         <span className="navbar__bar" />
       </button>
 
-      {/* ── Backdrop ── */}
       <div
         className={`navbar__backdrop${menuOpen ? ' is-open' : ''}`}
         onClick={close}
         aria-hidden="true"
       />
 
-      {/* ── Right Off-canvas Drawer ── */}
       <nav
         className={`navbar__drawer${menuOpen ? ' is-open' : ''}`}
         role="dialog"
         aria-modal="true"
         aria-label="Mobile navigation"
       >
-        {/* Drawer header */}
+        
         <div className="navbar__drawer-header">
           <div className="navbar__drawer-logo">
             <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
@@ -97,7 +90,6 @@ export default function Navbar() {
           </div>
         </div>
 
-        {/* Drawer links */}
         <div className="navbar__drawer-links">
           {NAV_LINKS.map(({ label, href }, i) => (
             <a
@@ -113,7 +105,6 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Drawer CTA */}
         <a href="#contact" className="navbar__drawer-cta" onClick={close}>
           <span>Let's Talk</span>
           <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
@@ -121,7 +112,6 @@ export default function Navbar() {
           </svg>
         </a>
 
-        {/* Drawer footer */}
         <p className="navbar__drawer-footer">Digital Product Engineering</p>
       </nav>
 

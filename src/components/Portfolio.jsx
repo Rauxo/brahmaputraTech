@@ -48,7 +48,7 @@ const Portfolio = () => {
           pin: true,
           scrub: 1,
           snap: 1 / (panels.length - 1),
-          // Set the scrolling distance to depend on the wrapper width
+          
           end: () => "+=" + wrapperRef.current.offsetWidth
         }
       });
@@ -67,13 +67,11 @@ const Portfolio = () => {
         {projects.map((project, index) => (
           <div className="portfolio-panel" key={project.id}>
             <div className="portfolio-content-horizontal">
-              
-              {/* Project Image */}
+
               <div className="portfolio-image-wrapper">
                 <img src={project.image} alt={project.name} className="portfolio-image" />
               </div>
-              
-              {/* Project Details */}
+
               <div className="portfolio-details">
                 <span className="portfolio-number">0{index + 1}</span>
                 <h3 className="portfolio-name">{project.name}</h3>

@@ -1,6 +1,4 @@
-/* ============================================================
-   HERO SECTION
-============================================================ */
+
 
 .hero {
   position: relative;
@@ -12,10 +10,6 @@
   overflow: hidden;
   background: #f8fafc;
 }
-
-/* ============================================================
-   VIDEO BACKGROUND
-============================================================ */
 
 .hero__video-wrapper {
   position: absolute;
@@ -48,10 +42,6 @@
   );
 }
 
-/* ============================================================
-   MAIN CONTENT
-============================================================ */
-
 .hero__content {
   position: relative;
   z-index: 2;
@@ -77,7 +67,6 @@
   max-width: 720px;
 }
 
-/* ── Small Label ── */
 .hero__label {
   display: inline-flex;
   align-items: center;
@@ -114,7 +103,6 @@
   50%       { opacity: 0.55; transform: scale(0.7); }
 }
 
-/* ── Heading ── */
 .hero__heading {
   font-family: 'Oswald', 'Roboto', system-ui, sans-serif;
   font-size: clamp(48px, 6vw, 80px);
@@ -134,7 +122,6 @@
   background-clip: text;
 }
 
-/* ── Subtext ── */
 .hero__subtext {
   font-family: 'Roboto', system-ui, sans-serif;
   font-size: clamp(18px, 2vw, 22px);
@@ -146,7 +133,6 @@
   animation: fadeSlideLeft 0.9s cubic-bezier(0.22, 1, 0.36, 1) 0.5s both;
 }
 
-/* ── Buttons ── */
 .hero__buttons {
   display: flex;
   align-items: center;
@@ -243,7 +229,6 @@
   transform: translateX(4px);
 }
 
-/* ── Trust Line ── */
 .hero__trust {
   display: inline-flex;
   align-items: center;
@@ -261,10 +246,6 @@
 .hero__trust-icon {
   flex-shrink: 0;
 }
-
-/* ============================================================
-   STATS BAR
-============================================================ */
 
 .hero__stats {
   position: relative;
@@ -342,10 +323,6 @@
   text-align: center;
 }
 
-/* ============================================================
-   KEYFRAME ANIMATIONS
-============================================================ */
-
 @keyframes fadeSlideLeft {
   from { opacity: 0; transform: translateX(-36px); }
   to   { opacity: 1; transform: translateX(0); }
@@ -355,10 +332,6 @@
   from { opacity: 0; transform: translateY(24px); }
   to   { opacity: 1; transform: translateY(0); }
 }
-
-/* ============================================================
-   RESPONSIVE
-============================================================ */
 
 @media (max-width: 900px) {
   .hero {

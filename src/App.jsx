@@ -15,7 +15,6 @@ function App() {
   useEffect(() => {
     const lenis = new Lenis()
 
-    // Synchronize Lenis scrolling with GSAP ScrollTrigger
     lenis.on('scroll', ScrollTrigger.update)
 
     function updateLenis(time) {

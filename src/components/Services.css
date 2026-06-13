@@ -56,7 +56,6 @@
   position: relative;
 }
 
-/* Phone Mockup */
 .phone-mockup {
   width: 280px;
   height: 580px;
@@ -97,7 +96,6 @@
   border-radius: 10px;
 }
 
-/* Laptop Mockup */
 .laptop-mockup {
   width: 500px;
   display: flex;
@@ -161,7 +159,6 @@
   margin-top: 8px;
 }
 
-/* Changing Text Animation */
 .changing-text-container {
   text-align: center;
   padding: 20px;

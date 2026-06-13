@@ -37,8 +37,7 @@ const Services = () => {
   return (
     <section className="services-section">
       <div className="services-container">
-        
-        {/* Service 1: Mobile Apps */}
+
         <div className="service-row">
           <motion.div 
             className="service-content"
@@ -73,7 +72,6 @@ const Services = () => {
           </motion.div>
         </div>
 
-        {/* Service 2: Web/Desktop Apps */}
         <div className="service-row reverse">
           <motion.div 
             className="service-content"
