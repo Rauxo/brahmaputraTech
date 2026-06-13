@@ -51,7 +51,12 @@ export default function Navbar() {
       </nav>
 
       {/* ── Desktop CTA ── */}
-      <a href="#contact" className="navbar__cta" id="navbar-cta-btn">Let's Talk</a>
+      <a href="#contact" className="navbar__cta" id="navbar-cta-btn">
+        <span>Let's Talk</span>
+        <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+        </svg>
+      </a>
 
       {/* ── Hamburger (animated → X) ── */}
       <button
@@ -110,9 +115,9 @@ export default function Navbar() {
 
         {/* Drawer CTA */}
         <a href="#contact" className="navbar__drawer-cta" onClick={close}>
-          Let's Talk
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
-            <path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/>
+          <span>Let's Talk</span>
+          <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+            <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </a>
 

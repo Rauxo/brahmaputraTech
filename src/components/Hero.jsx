@@ -31,7 +31,10 @@ export default function Hero() {
         </p>
 
         <a href="#contact" className="hero__btn hero__btn--primary">
-          GET STARTED
+          <span>GET STARTED</span>
+          <svg className="btn-arrow" width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M4 12L12 4M12 4H6M12 4V10" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
         </a>
 
       </div>
