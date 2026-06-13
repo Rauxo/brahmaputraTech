@@ -39,7 +39,7 @@ const Technologies = () => {
   }, []);
 
   return (
-    <section className="tech-section-wrapper" ref={sectionRef}>
+    <section className="tech-section-wrapper" id="technology" ref={sectionRef}>
       <div className="tech-container">
         <h2 className="tech-title">Technologies We Use</h2>
         <p className="tech-subtitle">We leverage modern, scalable tech stacks to deliver premium solutions.</p>
