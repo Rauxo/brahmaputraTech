@@ -90,11 +90,6 @@ export default function Navbar() {
             </svg>
             <span>BRAHMAPUTRA TECH</span>
           </div>
-          <button className="navbar__drawer-close" onClick={close} aria-label="Close menu">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-              <path d="M18 6L6 18M6 6l12 12" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-          </button>
         </div>
 
         {/* Drawer links */}

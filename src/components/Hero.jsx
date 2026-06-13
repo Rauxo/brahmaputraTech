@@ -20,24 +20,20 @@ export default function Hero() {
       </div>
 
       {/* ── Main Content ── */}
-      <div className="hero__content">
-        <div className="hero__left">
+      <div className="hero__content hero__content--centered">
 
-          {/* Heading */}
-          <h1 className="hero__heading">
-            Building Software<br />
-            That Powers<br />
-            <span className="hero__heading-accent">The Future</span>
-          </h1>
+        <h1 className="hero__heading">
+          Step into the digital<br />world with <span className="hero__heading-accent">Us</span>
+        </h1>
 
-          {/* Subtext */}
-          <p className="hero__subtext">
-            We design and develop scalable web platforms,
-            high-performance applications, and production-ready
-            digital systems engineered for modern businesses.
-          </p>
+        <p className="hero__subtext">
+          Empowering businesses with smart, scalable software.
+        </p>
 
-        </div>
+        <a href="#contact" className="hero__btn hero__btn--primary">
+          GET STARTED
+        </a>
+
       </div>
 
     </section>
