@@ -1,7 +1,7 @@
 .tech-section-wrapper {
   width: 100%;
   position: relative;
-  background-color: #f8f9fa;
+  background: linear-gradient(to bottom, #ffffff 0%, #e0e7ff 100%);
   z-index: 10;
 }
 

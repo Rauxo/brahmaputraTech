@@ -1,9 +1,5 @@
-import React, { useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import React from 'react';
 import './Portfolio.css';
-
-gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
@@ -12,7 +8,6 @@ const projects = [
     description: "A modern, high-conversion shopping platform with seamless checkout and inventory management.",
     link: "https://example.com/ecommerce",
     image: "https://images.unsplash.com/photo-1661956602116-aa6865609028?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    color: "#e2e8f0"
   },
   {
     id: 2,
@@ -20,7 +15,6 @@ const projects = [
     description: "Real-time data visualization and management tool for enterprise metrics and user analytics.",
     link: "https://example.com/saas",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    color: "#dbeafe"
   },
   {
     id: 3,
@@ -28,52 +22,39 @@ const projects = [
     description: "A stunning corporate identity website featuring dynamic animations and responsive design.",
     link: "https://example.com/corporate",
     image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
-    color: "#f3e8ff"
+  },
+  {
+    id: 4,
+    name: "Mobile Banking App",
+    description: "A sleek, secure mobile banking application with real-time transactions and smart analytics.",
+    link: "https://example.com/banking",
+    image: "https://images.unsplash.com/photo-1563986768609-322da13575f3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    id: 5,
+    name: "Healthcare Platform",
+    description: "A comprehensive digital healthcare platform streamlining appointments and patient records.",
+    link: "https://example.com/healthcare",
+    image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
   }
 ];
 
 const Portfolio = () => {
-  const sectionRef = useRef(null);
-  const wrapperRef = useRef(null);
-
-  useEffect(() => {
-    let ctx = gsap.context(() => {
-      let panels = gsap.utils.toArray(".portfolio-panel");
-      
-      gsap.to(panels, {
-        xPercent: -100 * (panels.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          pin: true,
-          scrub: 1,
-          snap: 1 / (panels.length - 1),
-          
-          end: () => "+=" + wrapperRef.current.offsetWidth
-        }
-      });
-    }, sectionRef);
-
-    return () => ctx.revert();
-  }, []);
-
   return (
-    <section className="portfolio-section" ref={sectionRef} id="portfolio">
+    <section className="portfolio-section" id="portfolio">
       <div className="portfolio-header">
         <h2 className="portfolio-title">Our Clients</h2>
       </div>
 
-      <div className="portfolio-wrapper" ref={wrapperRef}>
-        {projects.map((project, index) => (
-          <div className="portfolio-panel" key={project.id}>
-            <div className="portfolio-content-horizontal">
-
+      <div className="marquee-outer">
+        <div className="marquee-track">
+          {[...projects, ...projects].map((project, index) => (
+            <div className="portfolio-content-horizontal" key={index}>
               <div className="portfolio-image-wrapper">
                 <img src={project.image} alt={project.name} className="portfolio-image" />
               </div>
-
               <div className="portfolio-details">
-                <span className="portfolio-number">0{index + 1}</span>
+                <span className="portfolio-number">0{(index % projects.length) + 1}</span>
                 <h3 className="portfolio-name">{project.name}</h3>
                 <p className="portfolio-desc">{project.description}</p>
                 <a href={project.link} target="_blank" rel="noreferrer" className="portfolio-link">
@@ -84,10 +65,9 @@ const Portfolio = () => {
                   </svg>
                 </a>
               </div>
-
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

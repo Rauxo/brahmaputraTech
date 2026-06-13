@@ -4,6 +4,8 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import Technologies from './components/Technologies'
 import Portfolio from './components/Portfolio'
+import Testimonials from './components/Testimonials'
+import Contact from './components/Contact'
 import Lenis from 'lenis'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -39,6 +41,8 @@ function App() {
         <Services />
         <Technologies />
         <Portfolio />
+        <Testimonials />
+        <Contact />
       </main>
     </>
   )
