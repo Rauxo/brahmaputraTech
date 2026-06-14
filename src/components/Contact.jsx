@@ -1,6 +1,8 @@
 import { useState, useRef, useEffect } from 'react'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { useNavigate } from 'react-router-dom'
+import { TrackingService } from '../utils/TrackingService'
 import './Contact.css'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -19,9 +21,11 @@ export default function Contact() {
   const sectionRef = useRef(null)
   const formRef = useRef(null)
   const leftRef = useRef(null)
+  const navigate = useNavigate()
 
-  const [form, setForm] = useState({ name: '', phone: '', service: '', description: '' })
-  const [submitted, setSubmitted] = useState(false)
+  const [form, setForm] = useState({ name: '', phone: '', service: '', description: '', email: '' })
+  const [hasStarted, setHasStarted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -41,13 +45,48 @@ export default function Contact() {
     return () => ctx.revert()
   }, [])
 
-  const handleChange = e => setForm({ ...form, [e.target.name]: e.target.value })
+  const handleChange = e => {
+    if (!hasStarted) {
+      setHasStarted(true);
+      TrackingService.formStart('Contact Form');
+    }
+    setForm({ ...form, [e.target.name]: e.target.value })
+  }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault()
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 4000)
-    setForm({ name: '', phone: '', service: '', description: '' })
+    setIsSubmitting(true)
+    
+    // Fire tracking event
+    TrackingService.formSubmit('Contact Form', {
+      service: form.service
+    });
+
+    try {
+      const response = await fetch('http://localhost:5000/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          ...form,
+          eventName: 'form_submit',
+          url: window.location.href
+        })
+      });
+
+      if (response.ok) {
+        setForm({ name: '', phone: '', email: '', service: '', description: '' })
+        navigate('/thank-you');
+      } else {
+        alert('Something went wrong. Please try again.');
+      }
+    } catch (error) {
+      console.warn('Backend is offline. Running in Inspection Mode. Redirecting to Thank You page.');
+      // Fallback for inspection without backend
+      setForm({ name: '', phone: '', email: '', service: '', description: '' })
+      navigate('/thank-you');
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -65,9 +104,9 @@ export default function Contact() {
                   <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 8.81 19.79 19.79 0 01.91 2.18 2 2 0 012.88 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
                 </svg>
               </div>
-              <div>
+              <div onClick={() => TrackingService.phoneClick('+917002776479')} style={{cursor: 'pointer'}}>
                 <span className="contact-info-label">Phone</span>
-                <span className="contact-info-value">+91 98765 43210</span>
+                <span className="contact-info-value">+91 7002776479</span>
               </div>
             </div>
             <div className="contact-info-item">
@@ -76,9 +115,9 @@ export default function Contact() {
                   <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>
                 </svg>
               </div>
-              <div>
+              <div onClick={() => TrackingService.emailClick('connect.brahmaputratech@gmail.com')} style={{cursor: 'pointer'}}>
                 <span className="contact-info-label">Email</span>
-                <span className="contact-info-value">hello@brahmaputratech.com</span>
+                <span className="contact-info-value">connect.brahmaputratech@gmail.com</span>
               </div>
             </div>
             <div className="contact-info-item">
@@ -89,96 +128,100 @@ export default function Contact() {
               </div>
               <div>
                 <span className="contact-info-label">Location</span>
-                <span className="contact-info-value">Guwahati, Assam, India</span>
+                <span className="contact-info-value">Assam | Northeast India</span>
               </div>
             </div>
           </div>
         </div>
 
         <div className="contact-form-wrapper" ref={formRef}>
-          {submitted ? (
-            <div className="contact-success">
-              <div className="success-icon">
-                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <polyline points="20 6 9 17 4 12"/>
-                </svg>
-              </div>
-              <h3>Message Sent!</h3>
-              <p>Thank you! We'll be in touch within 24 hours.</p>
-            </div>
-          ) : (
-            <form className="contact-form" onSubmit={handleSubmit} noValidate>
-              <div className="form-row">
-                <div className="form-group">
-                  <label className="form-label" htmlFor="name">Full Name</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    className="form-input"
-                    placeholder="e.g. Rahul Saikia"
-                    value={form.name}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-                <div className="form-group">
-                  <label className="form-label" htmlFor="phone">Contact Number</label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    className="form-input"
-                    placeholder="e.g. +91 98765 43210"
-                    value={form.phone}
-                    onChange={handleChange}
-                    required
-                  />
-                </div>
-              </div>
-
+          <form className="contact-form" onSubmit={handleSubmit} noValidate>
+            <div className="form-row">
               <div className="form-group">
-                <label className="form-label" htmlFor="service">Select Service</label>
-                <div className="form-select-wrapper">
-                  <select
-                    id="service"
-                    name="service"
-                    className="form-select"
-                    value={form.service}
-                    onChange={handleChange}
-                    required
-                  >
-                    <option value="" disabled>Choose a service...</option>
-                    {services.map(s => <option key={s} value={s}>{s}</option>)}
-                  </select>
-                  <svg className="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <polyline points="6 9 12 15 18 9"/>
-                  </svg>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label className="form-label" htmlFor="description">Project Description</label>
-                <textarea
-                  id="description"
-                  name="description"
-                  className="form-textarea"
-                  placeholder="Tell us about your project, goals, and timeline..."
-                  rows={5}
-                  value={form.description}
+                <label className="form-label" htmlFor="name">Full Name</label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  className="form-input"
+                  placeholder="e.g. Rahul Saikia"
+                  value={form.name}
                   onChange={handleChange}
                   required
                 />
               </div>
+              <div className="form-group">
+                <label className="form-label" htmlFor="phone">Contact Number</label>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  className="form-input"
+                  placeholder="e.g. +91 98765 43210"
+                  value={form.phone}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
 
-              <button type="submit" className="contact-submit">
-                <span>Send Message</span>
+            <div className="form-group">
+              <label className="form-label" htmlFor="email">Email Address</label>
+              <input
+                id="email"
+                name="email"
+                type="email"
+                className="form-input"
+                placeholder="e.g. hello@example.com"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" htmlFor="service">Select Service</label>
+              <div className="form-select-wrapper">
+                <select
+                  id="service"
+                  name="service"
+                  className="form-select"
+                  value={form.service}
+                  onChange={handleChange}
+                  required
+                >
+                  <option value="" disabled>Choose a service...</option>
+                  {services.map(s => <option key={s} value={s}>{s}</option>)}
+                </select>
+                <svg className="select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </div>
+            </div>
+
+            <div className="form-group">
+              <label className="form-label" htmlFor="description">Requirement / Description</label>
+              <textarea
+                id="description"
+                name="description"
+                className="form-textarea"
+                placeholder="Tell us about your project, goals, and timeline..."
+                rows={5}
+                value={form.description}
+                onChange={handleChange}
+                required
+              />
+            </div>
+
+            <button type="submit" className="contact-submit" disabled={isSubmitting}>
+              <span>{isSubmitting ? 'Sending...' : 'Send Message'}</span>
+              {!isSubmitting && (
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
                 </svg>
-              </button>
-            </form>
-          )}
+              )}
+            </button>
+          </form>
         </div>
 
       </div>
