@@ -41,13 +41,22 @@
 .navbar__logo {
   display: flex;
   align-items: center;
-  gap: 12px;
   text-decoration: none;
   flex-shrink: 0;
   transition: opacity 0.25s ease;
 }
 
 .navbar__logo:hover { opacity: 0.85; }
+
+.navbar__brand-logo {
+  width: 100%;
+  height: 200px;
+  object-fit: contain;
+}
+
+.navbar--scrolled .navbar__brand-logo {
+  filter: brightness(0) saturate(100%);
+}
 
 .navbar__logo-icon {
   display: flex;
@@ -66,8 +75,12 @@
   font-size: 19px;
   font-weight: 700;
   letter-spacing: 0.14em;
-  color: #0f172a;
+  color: #ffffff;
   white-space: nowrap;
+}
+
+.navbar--scrolled .navbar__logo-text {
+  color: #0f172a;
 }
 
 .navbar__links {
@@ -81,7 +94,7 @@
   font-size: 17.5px;
   font-weight: 600;
   letter-spacing: 0.025em;
-  color: #334155;
+  color: #ffffff;
   text-decoration: none;
   padding: 10px 18px;
   border-radius: 10px;
@@ -106,8 +119,16 @@
 }
 
 .navbar__link:hover {
-  color: #2563EB;
+  color: #60a5fa;
   transform: translateY(-2px);
+}
+
+.navbar--scrolled .navbar__link {
+  color: #334155;
+}
+
+.navbar--scrolled .navbar__link:hover {
+  color: #2563EB;
 }
 
 .navbar__link:hover::after {
@@ -199,13 +220,18 @@
   display: block;
   width: 22px;
   height: 2px;
-  background: #0f172a;
+  background: #ffffff;
   border-radius: 2px;
   transform-origin: center;
   transition:
     transform  0.4s cubic-bezier(0.4, 0, 0.2, 1),
     opacity    0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    width      0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width      0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navbar--scrolled .navbar__bar {
+  background: #0f172a;
 }
 
 .navbar__hamburger.is-open .navbar__bar:nth-child(1) {
@@ -289,6 +315,13 @@
   font-weight: 700;
   letter-spacing: 0.12em;
   color: #0f172a;
+}
+
+.navbar__drawer-logo img {
+  width: 150px;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) saturate(100%);
 }
 
 .navbar__drawer-close {
@@ -436,5 +469,49 @@
   }
   .navbar__hamburger {
     display: flex;
+  }
+}
+
+@media (max-width: 540px) {
+  .navbar {
+    left: 0;
+    right: 0;
+    translate: none;
+    width: 100%;
+    max-width: none;
+    min-width: 0;
+    height: 96px;
+    padding: 0 16px;
+  }
+
+  .navbar--scrolled {
+    height: 72px;
+    border-radius: 0;
+  }
+
+  .navbar__logo {
+    min-width: 0;
+    gap: 7px;
+  }
+
+ .navbar__brand-logo {
+  width: 160px;
+  height: auto;
+}
+  .navbar__hamburger {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    gap: 5px;
+  }
+
+  .navbar__bar {
+    width: 18px;
+  }
+
+  .navbar__drawer {
+    width: min(320px, calc(100% - 24px));
+    max-width: calc(100% - 24px);
+    padding: 24px 22px 36px;
   }
 }

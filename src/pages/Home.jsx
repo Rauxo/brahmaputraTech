@@ -1,5 +1,6 @@
 import React from 'react'
 import Hero from '../components/Hero'
+import VideoShowcase from '../components/VideoShowcase'
 import Services from '../components/Services'
 import Technologies from '../components/Technologies'
 import Portfolio from '../components/Portfolio'
@@ -16,6 +17,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <VideoShowcase />
       <Services />
       <Technologies />
       <Portfolio />
