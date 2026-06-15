@@ -60,6 +60,7 @@ const Services = () => {
             viewport={{ once: false, amount: 0.3 }}
           >
             <div className="phone-mockup">
+               <div className="phone-notch"></div>
               <div className="phone-screen">
                 <div className="changing-text-container">
                   <span className="changing-text" key={`phone-${phoneTextIndex}`}>
