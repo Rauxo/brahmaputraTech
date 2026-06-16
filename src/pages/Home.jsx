@@ -1,6 +1,5 @@
 import React from 'react'
 import Hero from '../components/Hero'
-import VideoShowcase from '../components/VideoShowcase'
 import Services from '../components/Services'
 import Technologies from '../components/Technologies'
 import Portfolio from '../components/Portfolio'
@@ -12,6 +11,7 @@ import TrustSection from '../components/TrustSection'
 import Industries from '../components/Industries'
 import WhyChooseUs from '../components/WhyChooseUs'
 import OurProcess from '../components/OurProcess'
+import CTA from '../components/CTA'
 
 export default function Home() {
   useEffect(() => {
@@ -28,6 +28,7 @@ export default function Home() {
       <OurProcess/>
       <Portfolio/>
       <Testimonials/>
+      <CTA/>
     </main>
   )
 }
