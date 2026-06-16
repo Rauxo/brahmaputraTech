@@ -70,7 +70,7 @@ export default function Hero() {
             </div>
 
             {/* Trust Section */}
-            <div className="hero__trust-section">
+            {/* <div className="hero__trust-section">
 
               <div className="hero__trust-avatars">
                 <img src="https://avatars.githubusercontent.com/u/16860528" alt="" />
@@ -91,7 +91,7 @@ export default function Hero() {
                 <span>1.28k reviews</span>
               </div>
 
-            </div>
+            </div> */}
 
           </div>
         </div>

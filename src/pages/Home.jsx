@@ -9,6 +9,7 @@ import Contact from '../components/Contact'
 import { TrackingService } from '../utils/TrackingService'
 import { useEffect } from 'react'
 import TrustSection from '../components/TrustSection'
+import Industries from '../components/Industries'
 
 export default function Home() {
   useEffect(() => {
@@ -19,6 +20,8 @@ export default function Home() {
     <main>
       <Hero />
       <TrustSection/>
+      <Services/>
+      <Industries/>
     </main>
   )
 }
