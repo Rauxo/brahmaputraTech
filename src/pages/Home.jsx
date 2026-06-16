@@ -8,6 +8,7 @@ import Testimonials from '../components/Testimonials'
 import Contact from '../components/Contact'
 import { TrackingService } from '../utils/TrackingService'
 import { useEffect } from 'react'
+import TrustSection from '../components/TrustSection'
 
 export default function Home() {
   useEffect(() => {
@@ -17,12 +18,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <VideoShowcase />
-      <Services />
-      <Technologies />
-      <Portfolio />
-      <Testimonials />
-      <Contact />
+      <TrustSection/>
     </main>
   )
 }
