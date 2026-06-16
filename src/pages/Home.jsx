@@ -27,6 +27,7 @@ export default function Home() {
       <WhyChooseUs/>
       <OurProcess/>
       <Portfolio/>
+      <Testimonials/>
     </main>
   )
 }
