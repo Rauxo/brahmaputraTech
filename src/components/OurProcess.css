@@ -1,0 +1,137 @@
+.process{
+  padding: 70px 20px;
+  background: #f8fafc;
+}
+
+/* heading */
+
+.process-heading{
+  text-align:center;
+  font-size:38px;
+  font-weight:700;
+  color:#111827;
+  margin-bottom:35px;
+}
+
+/* container */
+
+.process-container{
+  max-width:1250px;
+  margin:auto;
+
+  background:#ffffff;
+  border:1px solid #ececec;
+  border-radius:16px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:28px 20px;
+  box-shadow:0 2px 8px rgba(0,0,0,.03);
+}
+
+/* card */
+
+.process-card{
+  flex:1;
+  text-align:center;
+  padding:10px;
+}
+
+/* icon */
+
+.process-icon{
+  font-size:30px;
+  color:#6366f1;
+  margin-bottom:12px;
+}
+
+/* title */
+
+.process-card h3{
+  margin:0 0 8px 0;
+  font-size:16px;
+  font-weight:700;
+  color:#111827;
+}
+
+/* subtitle */
+
+.process-card p{
+  margin:0;
+  font-size:13px;
+  line-height:1.45;
+  color:#6b7280;
+  max-width:150px;
+  margin-inline:auto;
+}
+
+/* arrow */
+
+.process-arrow{
+  font-size:30px;
+  color:#9ca3af;
+  padding:0 8px;
+  font-weight:600;
+}
+
+/* tablet */
+
+@media(max-width:900px){
+
+  .process-container{
+    flex-wrap:wrap;
+    gap:20px;
+    justify-content:center;
+  }
+
+  .process-card{
+    flex:0 0 calc(33% - 20px);
+  }
+
+  .process-arrow{
+    display:none;
+  }
+}
+
+/* mobile */
+
+@media(max-width:540px){
+
+  .process{
+    padding:50px 12px;
+  }
+
+  .process-heading{
+    font-size:24px;
+    margin-bottom:20px;
+  }
+
+  .process-container{
+    flex-direction:column;
+    gap:18px;
+    padding:20px;
+  }
+
+  .process-card{
+    width:100%;
+  }
+
+  .process-icon{
+    font-size:24px;
+  }
+
+  .process-card h3{
+    font-size:14px;
+  }
+
+  .process-card p{
+    font-size:11px;
+    max-width:200px;
+  }
+
+  .process-arrow{
+    display:none;
+  }
+}

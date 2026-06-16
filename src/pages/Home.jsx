@@ -11,6 +11,7 @@ import { useEffect } from 'react'
 import TrustSection from '../components/TrustSection'
 import Industries from '../components/Industries'
 import WhyChooseUs from '../components/WhyChooseUs'
+import OurProcess from '../components/OurProcess'
 
 export default function Home() {
   useEffect(() => {
@@ -24,6 +25,7 @@ export default function Home() {
       <Services/>
       <Industries/>
       <WhyChooseUs/>
+      <OurProcess/>
     </main>
   )
 }
