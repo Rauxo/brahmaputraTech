@@ -1,69 +1,82 @@
 import React from "react";
 import "./Portfolio.css";
 
+import time8 from "../assets/time8.jpg";
+import ask from "../assets/ask.webp";
+
 const projects = [
   {
     id: 1,
-    name: "E-Commerce Experience",
-    description:
-      "A modern, high-conversion shopping platform with seamless checkout and inventory management.",
-    link: "https://example.com/ecommerce",
-    image:
-      "https://images.unsplash.com/photo-1661956602116-aa6865609028?auto=format&fit=crop&w=800&q=80",
-    size: "large",
+    name: "Pride East Entertainment",
+    subtitle: "News Portal Development",
+    image: time8,
+    link: "#"
   },
-
   {
     id: 2,
-    name: "SaaS Analytics Dashboard",
-    description:
-      "Real-time data visualization and management tool for enterprise metrics and user analytics.",
-    link: "https://example.com/saas",
-    image:
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-    size: "wide",
+    name: "ASK ENGINEERINGS",
+    subtitle: "Industrial Website Development",
+    image: ask,
+    link: "#"
   },
-
   {
     id: 3,
-    name: "Corporate Brand Platform",
-    description:
-      "A stunning corporate identity website featuring dynamic animations and responsive design.",
-    link: "https://example.com/corporate",
+    name: "Future Project",
+    subtitle: "Coming Soon",
     image:
-      "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
-    size: "small",
-  },
+      "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80",
+    link: "#"
+  }
 ];
-const Portfolio = () => {
+
+function Portfolio() {
   return (
-    <section className="portfolio-section">
-      <h2 style={{color:"#000"}}>Our Clients</h2>
+    <section className="portfolio">
 
-      <div className="portfolio-grid">
-        {projects.map((project) => (
-          <div key={project.id} className={`card ${project.size}`}>
-            {project.image && (
-              <img src={project.image} alt={project.name} />
-            )}
+      <h2 className="portfolio-heading">
+        Our Portfolio
+      </h2>
 
-            <p>{project.description}</p>
+      <div className="portfolio-wrapper">
 
-            <div className="client">
-              <div className="avatar">
-                {project.name
-                  .split(" ")
-                  .map((w) => w[0])
-                  .join("")
-                  .slice(0, 2)}
+        {/* Left Arrow */}
+        <button className="portfolio-arrow">‹</button>
+
+        <div className="portfolio-grid">
+
+          {projects.map((project) => (
+            <div className="portfolio-card" key={project.id}>
+
+              <img
+                src={project.image}
+                alt={project.name}
+                className="portfolio-image"
+              />
+
+              <div className="portfolio-content">
+
+                <h3>{project.name}</h3>
+
+                <p>{project.subtitle}</p>
+
+                <a href={project.link}>
+                  View Case Study →
+                </a>
+
               </div>
-              <span>{project.name}</span>
+
             </div>
-          </div>
-        ))}
+          ))}
+
+        </div>
+
+        {/* Right Arrow */}
+        <button className="portfolio-arrow">›</button>
+
       </div>
+
     </section>
   );
-};
+}
 
 export default Portfolio;

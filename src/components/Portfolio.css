@@ -1,95 +1,160 @@
-.portfolio-section {
-  padding: 100px 40px;
-  background: #f8f8f8;
+.portfolio{
+  padding: 80px 20px;
+  background: #f8fafc;
 }
 
-.portfolio-section h2 {
-  font-size: 52px;
-  margin-bottom: 50px;
-  font-weight: 700;
+/* heading */
+
+.portfolio-heading{
+  text-align:center;
+  font-size:38px;
+  font-weight:700;
+  color:#111827;
+  margin-bottom:35px;
 }
 
-.portfolio-grid {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  gap: 24px;
+/* wrapper */
+
+.portfolio-wrapper{
+  max-width:1300px;
+  margin:auto;
+
+  display:flex;
+  align-items:center;
+  gap:18px;
 }
 
-.card {
-  background: #f2f2f2;
-  border-radius: 28px;
-  padding: 35px;
-  border: 1px solid #ddd;
-  transition: 0.3s ease;
+/* arrows */
+
+.portfolio-arrow{
+  width:42px;
+  height:42px;
+
+  border:none;
+  background:#ffffff;
+  border-radius:50%;
+
+  font-size:30px;
+  cursor:pointer;
+
+  box-shadow:0 2px 6px rgba(0,0,0,.08);
 }
 
-.card:hover {
-  transform: translateY(-5px);
+/* cards grid */
+
+.portfolio-grid{
+  flex:1;
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
 }
 
-.card.large {
-  grid-row: span 2;
+/* card */
+
+.portfolio-card{
+  background:#ffffff;
+  border-radius:14px;
+  overflow:hidden;
+
+  border:1px solid #ececec;
+
+  box-shadow:0 2px 8px rgba(0,0,0,.04);
+  transition:.3s ease;
 }
 
-.card.wide {
-  min-height: 320px;
+.portfolio-card:hover{
+  transform:translateY(-5px);
 }
 
-.card.small {
-  min-height: 250px;
+/* image */
+
+.portfolio-image{
+  width:100%;
+  height:180px;
+  object-fit:cover;
 }
 
-.card img {
-  width: 100%;
-  border-radius: 18px;
-  margin-bottom: 25px;
+/* content */
+
+.portfolio-content{
+  padding:20px;
+  text-align:center;
 }
 
-.card p {
-  font-size: 28px;
-  line-height: 1.6;
-  color: #222;
+/* title */
+
+.portfolio-content h3{
+  margin:0 0 8px 0;
+  font-size:22px;
+  font-weight:700;
+  color:#111827;
 }
 
-.client {
-  margin-top: 35px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  color:#000;
+/* subtitle */
+
+.portfolio-content p{
+  margin:0 0 18px 0;
+  font-size:14px;
+  color:#6b7280;
 }
 
-.avatar {
-  width: 55px;
-  height: 55px;
-  border-radius: 50%;
-  background: #e5e5e5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-weight: 600;
+/* link */
+
+.portfolio-content a{
+  text-decoration:none;
+  color:#111827;
+  font-size:14px;
+  font-weight:600;
 }
 
-.client span {
-  font-style: italic;
-  font-size: 20px;
+/* tablet */
+
+@media(max-width:900px){
+
+  .portfolio-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .portfolio-arrow{
+    display:none;
+  }
 }
 
 /* mobile */
-@media(max-width:768px){
+
+@media(max-width:540px){
+
+  .portfolio{
+    padding:50px 12px;
+  }
+
+  .portfolio-heading{
+    font-size:24px;
+    margin-bottom:20px;
+  }
+
   .portfolio-grid{
     grid-template-columns:1fr;
+    gap:14px;
   }
 
-  .card.large{
-    grid-row:unset;
+  .portfolio-image{
+    height:150px;
   }
 
-  .card p{
-    font-size:20px;
+  .portfolio-content{
+    padding:14px;
   }
 
-  .portfolio-section h2{
-    font-size:36px;
+  .portfolio-content h3{
+    font-size:17px;
+  }
+
+  .portfolio-content p{
+    font-size:12px;
+  }
+
+  .portfolio-content a{
+    font-size:12px;
   }
 }

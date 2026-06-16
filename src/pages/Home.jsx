@@ -26,6 +26,7 @@ export default function Home() {
       <Industries/>
       <WhyChooseUs/>
       <OurProcess/>
+      <Portfolio/>
     </main>
   )
 }
