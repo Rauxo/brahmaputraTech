@@ -158,3 +158,47 @@
     font-size:12px;
   }
 }
+/* special much more card */
+
+.special-card{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:320px;
+
+  background:linear-gradient(135deg,#111827,#374151);
+  color:white;
+  border:none;
+}
+
+.special-card .portfolio-content{
+  text-align:center;
+  padding:30px;
+}
+
+.special-card h3{
+  font-size:32px;
+  color:white;
+  margin-bottom:12px;
+}
+
+.special-card p{
+  color:#d1d5db;
+  font-size:15px;
+  line-height:1.6;
+  margin-bottom:22px;
+}
+
+.special-card a{
+  color:#ffffff;
+  border:1px solid rgba(255,255,255,.25);
+  padding:10px 18px;
+  border-radius:8px;
+  display:inline-block;
+  transition:.3s;
+}
+
+.special-card a:hover{
+  background:white;
+  color:#111827;
+}
