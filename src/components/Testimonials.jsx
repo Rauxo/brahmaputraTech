@@ -32,7 +32,7 @@ export default function Testimonials() {
   }, []);
 
   return (
-    <section className="testimonials">
+    <section className="testimonials" id="testimonials">
 
       <h2 className="testimonials-heading">
         What Our Clients Say

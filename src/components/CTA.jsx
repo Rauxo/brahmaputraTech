@@ -4,7 +4,7 @@ import rocket from "../assets/rocket.png";
 
 function CTA() {
   return (
-    <section className="cta-section">
+    <section className="cta-section" id="contact">
 
       <div className="cta-container">
 
